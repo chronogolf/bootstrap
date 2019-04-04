@@ -202,6 +202,12 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
               }
             };
 
+            // Chronogolf: monkey patch to handle zone error during e2e tests
+            if (window.Zone) {
+              var zone = new window.Zone();
+              positionTooltip = zone.wrap(positionTooltip);
+            }
+
             // Set up the correct scope to allow transclusion later
             ttScope.origScope = scope;
 
