@@ -22,6 +22,7 @@
   ],
   "main": "index.js",
   "scripts": {
+    "prepare": "grunt build",
     "demo": "grunt after-test && static dist -a 0.0.0.0 -H '{\"Cache-Control\": \"no-cache, must-revalidate\"}'",
     "test": "grunt"
   },
