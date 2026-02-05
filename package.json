@@ -26,7 +26,9 @@
     "index.js",
     "dist/",
     "src/",
-    "template/"
+    "template/",
+    "Gruntfile.js",
+    "misc/"
   ],
   "main": "index.js",
   "scripts": {
