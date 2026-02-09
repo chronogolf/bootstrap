@@ -18,6 +18,8 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
   minMode: 'day',
   monthColumns: 3,
   ngModelOptions: {},
+  nextButtonLabel: 'next',
+  previousButtonLabel: 'previous',
   shortcutPropagation: false,
   showWeeks: true,
   yearColumns: 5,
@@ -56,6 +58,8 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
     'minDate',
     'minMode',
     'monthColumns',
+    'nextButtonLabel',
+    'previousButtonLabel',
     'showWeeks',
     'shortcutPropagation',
     'startingDay',
@@ -87,6 +91,11 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
       case 'yearColumns':
       case 'yearRows':
         self[key] = angular.isDefined($scope.datepickerOptions[key]) ?
+          $scope.datepickerOptions[key] : datepickerConfig[key];
+        break;
+      case 'nextButtonLabel':
+      case 'previousButtonLabel':
+        $scope[key] = angular.isDefined($scope.datepickerOptions[key]) ?
           $scope.datepickerOptions[key] : datepickerConfig[key];
         break;
       case 'startingDay':

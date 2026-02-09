@@ -3,8 +3,6 @@ Due to [Angular](https://angular.io)'s continued adoption, our creation of [the 
 
 We thank you for all your contributions over the years and hope you've enjoyed using this library as much as we've had developing and maintaining it.  It would not have been successful without them.
 
-THIS IS A TEST PUSH TO CHRONOGOLF FORK
-
 ---
 
 ### UI Bootstrap - [AngularJS](http://angularjs.org/) directives specific to [Bootstrap](http://getbootstrap.com)
