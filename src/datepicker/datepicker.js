@@ -24,8 +24,8 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
   yearRows: 4
 })
 
-.controller('UibDatepickerController', ['$scope', '$element', '$attrs', '$parse', '$interpolate', '$locale', '$log', 'dateFilter', 'uibDatepickerConfig', '$datepickerLiteralWarning', '$datepickerSuppressError', 'uibDateParser',
-  function($scope, $element, $attrs, $parse, $interpolate, $locale, $log, dateFilter, datepickerConfig, $datepickerLiteralWarning, $datepickerSuppressError, dateParser) {
+.controller('UibDatepickerController', ['$scope', '$element', '$attrs', '$parse', '$interpolate', '$locale', '$log', '$timeout', 'dateFilter', 'uibDatepickerConfig', '$datepickerLiteralWarning', '$datepickerSuppressError', 'uibDateParser',
+  function($scope, $element, $attrs, $parse, $interpolate, $locale, $log, $timeout, dateFilter, datepickerConfig, $datepickerLiteralWarning, $datepickerSuppressError, dateParser) {
   var self = this,
       ngModelCtrl = { $setViewValue: angular.noop }, // nullModelCtrl;
       ngModelOptions = {},
@@ -297,13 +297,27 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
     setMode(self.modes[self.modes.indexOf($scope.datepickerMode) + direction]);
 
     $scope.$emit('uib:datepicker.mode');
+    $scope.$broadcast('uib:datepicker.focus');
   };
 
   // Key event mapper
   $scope.keys = { 13: 'enter', 32: 'space', 33: 'pageup', 34: 'pagedown', 35: 'end', 36: 'home', 37: 'left', 38: 'up', 39: 'right', 40: 'down' };
 
   var focusElement = function() {
-    self.element[0].focus();
+    // Use $timeout to ensure DOM has been updated after ng-switch view changes.
+    // Fixes: When switching views (e.g., day -> month picker via title button, or
+    // month -> day when selecting a month), focus would be lost because ng-switch
+    // removes/recreates DOM elements. $timeout defers focus until after Angular
+    // has rendered the new view's DOM, allowing us to find and focus the tbody element.
+    $timeout(function() {
+      // Focus the tbody element which contains the date/month/year grid
+      var tbody = self.element[0].querySelector('tbody[tabindex]');
+      if (tbody) {
+        tbody.focus();
+      } else {
+        self.element[0].focus();
+      }
+    }, 0);
   };
 
   // Listen for focus requests from popup directive
@@ -313,6 +327,12 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
     var key = $scope.keys[evt.which];
 
     if (!key || evt.shiftKey || evt.altKey || $scope.disabled) {
+      return;
+    }
+
+    // If the event originated from a button, let the button handle it naturally
+    var target = evt.target || evt.srcElement;
+    if (target && target.tagName === 'BUTTON') {
       return;
     }
 
