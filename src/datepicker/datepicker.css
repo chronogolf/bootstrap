@@ -9,3 +9,24 @@
 .uib-left, .uib-right {
   width: 100%
 }
+
+/* Remove default outline from tbody when focused - focus is shown on active button instead */
+.uib-daypicker tbody:focus,
+.uib-monthpicker tbody:focus,
+.uib-yearpicker tbody:focus {
+  outline: none;
+}
+
+/* Accessible focus styles - double-layered outline (white inner, blue outer) */
+.uib-datepicker button.uib-left:focus,
+.uib-datepicker button.uib-right:focus,
+.uib-datepicker button.uib-title:focus,
+.uib-daypicker tbody:focus .btn.active,
+.uib-monthpicker tbody:focus .btn.active,
+.uib-yearpicker tbody:focus .btn.active {
+  box-shadow: 0 0 0 2px #FFFFFF;
+  outline: 3px solid #005FB8;
+  outline-offset: 2px;
+  position: relative;
+  z-index: 1;
+}
