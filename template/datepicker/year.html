@@ -6,7 +6,7 @@
       <th><button type="button" class="btn btn-default btn-sm pull-right uib-right" ng-click="move(1)" tabindex="0" aria-label="{{::nextYearsLabel}}"><i aria-hidden="true" class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">{{::nextYearsLabel}}</span></button></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody tabindex="0" ng-keydown="keydown($event)">
     <tr class="uib-years" ng-repeat="row in rows track by $index" role="row">
       <td ng-repeat="dt in row" class="uib-year text-center" role="gridcell"
         id="{{::dt.uid}}"
