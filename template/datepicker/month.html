@@ -1,9 +1,9 @@
 <table role="grid" aria-labelledby="{{::uniqueId}}-title" aria-activedescendant="{{activeDateId}}">
   <thead>
     <tr>
-      <th><button type="button" class="btn btn-default btn-sm pull-left uib-left" ng-click="move(-1)" tabindex="0" aria-label="{{::previousYearLabel}}"><i aria-hidden="true" class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">{{::previousYearLabel}}</span></button></th>
-      <th colspan="{{::yearHeaderColspan}}"><button id="{{::uniqueId}}-title" aria-live="assertive" aria-atomic="true" type="button" class="btn btn-default btn-sm uib-title" ng-click="toggleMode()" ng-disabled="datepickerMode === maxMode" tabindex="0"><strong>{{title}}</strong></button></th>
-      <th><button type="button" class="btn btn-default btn-sm pull-right uib-right" ng-click="move(1)" tabindex="0" aria-label="{{::nextYearLabel}}"><i aria-hidden="true" class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">{{::nextYearLabel}}</span></button></th>
+      <th><button type="button" class="btn btn-default btn-sm pull-left uib-left" ng-click="move(-1)" tabindex="0" aria-label="Previous year"><i aria-hidden="true" class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">previous</span></button></th>
+      <th colspan="{{::yearHeaderColspan}}"><button id="{{::uniqueId}}-title" role="heading" aria-live="assertive" aria-atomic="true" type="button" class="btn btn-default btn-sm uib-title" ng-click="toggleMode()" ng-disabled="datepickerMode === maxMode" tabindex="0"><strong>{{title}}</strong></button></th>
+      <th><button type="button" class="btn btn-default btn-sm pull-right uib-right" ng-click="move(1)" tabindex="0" aria-label="Next year"><i aria-hidden="true" class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">next</span></i></button></th>
     </tr>
   </thead>
   <tbody tabindex="0" ng-keydown="keydown($event)">
