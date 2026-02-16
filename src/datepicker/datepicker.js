@@ -18,12 +18,6 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
   minMode: 'day',
   monthColumns: 3,
   ngModelOptions: {},
-  nextMonthLabel: 'Next month',
-  nextYearLabel: 'Next year',
-  nextYearsLabel: 'Next 20 years',
-  previousMonthLabel: 'Previous month',
-  previousYearLabel: 'Previous year',
-  previousYearsLabel: 'Previous 20 years',
   shortcutPropagation: false,
   showWeeks: true,
   yearColumns: 5,
@@ -62,12 +56,6 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
     'minDate',
     'minMode',
     'monthColumns',
-    'nextMonthLabel',
-    'nextYearLabel',
-    'nextYearsLabel',
-    'previousMonthLabel',
-    'previousYearLabel',
-    'previousYearsLabel',
     'showWeeks',
     'shortcutPropagation',
     'startingDay',
@@ -99,15 +87,6 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
       case 'yearColumns':
       case 'yearRows':
         self[key] = angular.isDefined($scope.datepickerOptions[key]) ?
-          $scope.datepickerOptions[key] : datepickerConfig[key];
-        break;
-      case 'nextMonthLabel':
-      case 'nextYearLabel':
-      case 'nextYearsLabel':
-      case 'previousMonthLabel':
-      case 'previousYearLabel':
-      case 'previousYearsLabel':
-        $scope[key] = angular.isDefined($scope.datepickerOptions[key]) ?
           $scope.datepickerOptions[key] : datepickerConfig[key];
         break;
       case 'startingDay':
