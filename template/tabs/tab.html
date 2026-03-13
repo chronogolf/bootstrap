@@ -2,7 +2,7 @@
   <a href
      id="uib-tab-{{index}}"
      role="tab"
-     aria-selected="{{active}}"
+     ng-attr-aria-selected="{{active ? 'true' : 'false'}}"
      aria-controls="uib-tabpanel-{{index}}"
      ng-click="select($event)"
      class="nav-link"
