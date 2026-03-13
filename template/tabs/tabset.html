@@ -1,7 +1,14 @@
 <div>
-  <ul class="nav nav-{{tabset.type || 'tabs'}}" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}" ng-transclude></ul>
+  <ul class="nav nav-{{tabset.type || 'tabs'}}"
+      role="tablist"
+      aria-label="{{tabset.ariaLabel}}"
+      ng-class="{'nav-stacked': vertical, 'nav-justified': justified}"
+      ng-transclude></ul>
   <div class="tab-content">
     <div class="tab-pane"
+         role="tabpanel"
+         id="uib-tabpanel-{{$index}}"
+         aria-labelledby="uib-tab-{{$index}}"
          ng-repeat="tab in tabset.tabs"
          ng-class="{active: tabset.active === tab.index}"
          uib-tab-content-transclude="tab">
