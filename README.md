@@ -1,7 +1,43 @@
-# Project Status (please read)
-Due to [Angular](https://angular.io)'s continued adoption, our creation of [the Angular version of this library](https://ng-bootstrap.github.io), and the the project maintainers' moving on to other things, this project is considered feature-complete and is no longer being maintained.
+# Angular Bootstrap Library
 
-We thank you for all your contributions over the years and hope you've enjoyed using this library as much as we've had developing and maintaining it.  It would not have been successful without them.
+This is Chronogolf's fork of Angular UI Bootstrap, used in the https://github.com/chronogolf/chronogolf monolith.
+
+## Building
+
+Templates must be compiled before the dist files are generated:
+
+```
+npm install
+npx grunt html2js build
+```
+
+The output is dist/ui-bootstrap-tpls-2.5.4.js, which is the file referenced by the monolith.
+
+## Local development against the monolith
+
+1. Point the monolith to your local fork
+
+In chronogolf/package.json, replace the GitHub URL with a local path:
+
+"angular-ui-bootstrap": "file:../bootstrap"
+
+2. Install and build
+
+### In this repo
+
+npm install && npx grunt html2js build
+
+### In the monolith
+
+npm install
+
+---
+
+# Project Status (please read)
+
+Due to [Angular](https://angular.io)'s continued adoption, our creation of [the Angular version of this library](https://ng-bootstrap.github.io), and the project maintainers' moving on to other things, this project is considered feature-complete and is no longer being maintained.
+
+We thank you for all your contributions over the years and hope you've enjoyed using this library as much as we've had developing and maintaining it. It would not have been successful without them.
 
 ---
 
@@ -13,25 +49,25 @@ We thank you for all your contributions over the years and hope you've enjoyed u
 [![CDNJS](https://img.shields.io/cdnjs/v/angular-ui-bootstrap.svg)](https://cdnjs.com/libraries/angular-ui-bootstrap/)
 
 ### Quick links
+
 - [Demo](#demo)
 - [Angular 2](#angular-2)
 - [Installation](#installation)
-    - [NPM](#install-with-npm)
-    - [Bower](#install-with-bower)
-    - [NuGet](#install-with-nuget)
-    - [Custom](#custom-build)
-    - [Manual](#manual-download)
+  - [NPM](#install-with-npm)
+  - [Bower](#install-with-bower)
+  - [NuGet](#install-with-nuget)
+  - [Custom](#custom-build)
+  - [Manual](#manual-download)
 - [Webpack / JSPM](#webpack--jspm)
 - [Support](#support)
-    - [FAQ](#faq)
-    - [Code of Conduct](#code-of-conduct)
-    - [PREFIX MIGRATION GUIDE](#prefix-migration-guide)
-    - [Supported browsers](#supported-browsers)
-    - [Need help?](#need-help)
-    - [Found a bug?](#found-a-bug)
+  - [FAQ](#faq)
+  - [Code of Conduct](#code-of-conduct)
+  - [PREFIX MIGRATION GUIDE](#prefix-migration-guide)
+  - [Supported browsers](#supported-browsers)
+  - [Need help?](#need-help)
+  - [Found a bug?](#found-a-bug)
 - [Contributing to the project](#contributing-to-the-project)
 - [Development, meeting minutes, roadmap and more.](#development-meeting-minutes-roadmap-and-more)
-
 
 # Demo
 
@@ -44,18 +80,21 @@ Are you interested in Angular 2? We are on our way! Check out [ng-bootstrap](htt
 # Installation
 
 Installation is easy as UI Bootstrap has minimal dependencies - only the AngularJS and Twitter Bootstrap's CSS are required.
-*Notes:*
-* Since version 0.13.0, UI Bootstrap depends on [ngAnimate](https://docs.angularjs.org/api/ngAnimate) for transitions and animations, such as the accordion, carousel, etc. Include `ngAnimate` in the module dependencies for your app in order to enable animation.
-* UI Bootstrap depends on [ngTouch](https://docs.angularjs.org/api/ngTouch) for swipe actions. Include `ngTouch` in the module dependencies for your app in order to enable swiping.
+_Notes:_
+
+- Since version 0.13.0, UI Bootstrap depends on [ngAnimate](https://docs.angularjs.org/api/ngAnimate) for transitions and animations, such as the accordion, carousel, etc. Include `ngAnimate` in the module dependencies for your app in order to enable animation.
+- UI Bootstrap depends on [ngTouch](https://docs.angularjs.org/api/ngTouch) for swipe actions. Include `ngTouch` in the module dependencies for your app in order to enable swiping.
 
 ## Angular Requirements
-* UI Bootstrap 1.0 and higher _requires_ Angular 1.4.x or higher and it has been tested with Angular 1.4.8.
-* UI Bootstrap 0.14.3 is the _last_ version that supports Angular 1.3.x.
-* UI Bootstrap 0.12.0 is the _last_ version that supports Angular 1.2.x.
+
+- UI Bootstrap 1.0 and higher _requires_ Angular 1.4.x or higher and it has been tested with Angular 1.4.8.
+- UI Bootstrap 0.14.3 is the _last_ version that supports Angular 1.3.x.
+- UI Bootstrap 0.12.0 is the _last_ version that supports Angular 1.2.x.
 
 ## Bootstrap Requirements
-* UI Bootstrap requires Bootstrap CSS version 3.x or higher and it has been tested with Bootstrap CSS 3.3.6.
-* UI Bootstrap 0.8 is the _last_ version that supports Bootstrap CSS 2.3.x.
+
+- UI Bootstrap requires Bootstrap CSS version 3.x or higher and it has been tested with Bootstrap CSS 3.3.6.
+- UI Bootstrap 0.8 is the _last_ version that supports Bootstrap CSS 2.3.x.
 
 #### Install with NPM
 
@@ -66,13 +105,15 @@ $ npm install angular-ui-bootstrap
 This will install AngularJS and Bootstrap NPM packages.
 
 #### Install with Bower
+
 ```sh
 $ bower install angular-bootstrap
 ```
 
-Note: do not install 'angular-ui-bootstrap'.  A separate repository - [bootstrap-bower](https://github.com/angular-ui/bootstrap-bower) - hosts the compiled javascript file and bower.json.
+Note: do not install 'angular-ui-bootstrap'. A separate repository - [bootstrap-bower](https://github.com/angular-ui/bootstrap-bower) - hosts the compiled javascript file and bower.json.
 
 #### Install with NuGet
+
 To install AngularJS UI Bootstrap, run the following command in the Package Manager Console
 
 ```sh
@@ -81,7 +122,7 @@ PM> Install-Package Angular.UI.Bootstrap
 
 #### Custom build
 
-Head over to https://angular-ui.github.io/bootstrap/ and hit the *Custom build* button to create your own custom UI Bootstrap build, just the way you like it.
+Head over to https://angular-ui.github.io/bootstrap/ and hit the _Custom build_ button to create your own custom UI Bootstrap build, just the way you like it.
 
 #### Manual download
 
@@ -94,7 +135,7 @@ Don't worry, if you are not sure which file to take, opt for `ui-bootstrap-tpls-
 When you are done downloading all the dependencies and project files the only remaining part is to add dependencies on the `ui.bootstrap` AngularJS module:
 
 ```js
-angular.module('myModule', ['ui.bootstrap']);
+angular.module("myModule", ["ui.bootstrap"]);
 ```
 
 # Webpack / JSPM
@@ -103,18 +144,18 @@ To use this project with webpack, follow the [NPM](#install-with-npm) instructio
 Now, if you want to use only the accordion, you can do:
 
 ```js
-import accordion from 'angular-ui-bootstrap/src/accordion';
+import accordion from "angular-ui-bootstrap/src/accordion";
 
-angular.module('myModule', [accordion]);
+angular.module("myModule", [accordion]);
 ```
 
 You can import all the pieces you need in the same way:
 
 ```js
-import accordion from 'angular-ui-bootstrap/src/accordion';
-import datepicker from 'angular-ui-bootstrap/src/datepicker';
+import accordion from "angular-ui-bootstrap/src/accordion";
+import datepicker from "angular-ui-bootstrap/src/datepicker";
 
-angular.module('myModule', [accordion, datepicker]);
+angular.module("myModule", [accordion, datepicker]);
 ```
 
 This will load all the dependencies (if any) and also the templates (if any).
@@ -122,24 +163,25 @@ This will load all the dependencies (if any) and also the templates (if any).
 Be sure to have a loader able to process `css` files like `css-loader`.
 
 If you would prefer not to load your css through your JavaScript file loader/bundler, you can choose to import the `index-nocss.js` file instead, which is available for the modules:
-* carousel
-* datepicker
-* datepickerPopup
-* dropdown
-* modal
-* popover
-* position
-* timepicker
-* tooltip
-* typeahead
+
+- carousel
+- datepicker
+- datepickerPopup
+- dropdown
+- modal
+- popover
+- position
+- timepicker
+- tooltip
+- typeahead
 
 The other modules, such as `accordion` in the example below, do not have CSS resources to load, so you should continue to import them as normal:
 
 ```js
-import accordion from 'angular-ui-bootstrap/src/accordion';
-import typeahead from 'angular-ui-bootstrap/src/typeahead/index-nocss.js';
+import accordion from "angular-ui-bootstrap/src/accordion";
+import typeahead from "angular-ui-bootstrap/src/typeahead/index-nocss.js";
 
-angular.module('myModule', [accordion, typeahead]);
+angular.module("myModule", [accordion, typeahead]);
 ```
 
 # Versioning
@@ -163,28 +205,29 @@ If you're updating your application to use prefixes, please check the [migration
 ## Supported browsers
 
 Directives from this repository are automatically tested with the following browsers:
-* Chrome (stable and canary channel)
-* Firefox
-* IE 9 and 10
-* Opera
-* Safari
+
+- Chrome (stable and canary channel)
+- Firefox
+- IE 9 and 10
+- Opera
+- Safari
 
 Modern mobile browsers should work without problems.
 
 ## Need help?
+
 Need help using UI Bootstrap?
 
-* Live help in the IRC (`#angularjs` channel at the `freenode` network). Use this [webchat](https://webchat.freenode.net/) or your own IRC client.
-* Ask a question in [StackOverflow](http://stackoverflow.com/) under the [angular-ui-bootstrap](http://stackoverflow.com/questions/tagged/angular-ui-bootstrap) tag.
+- Live help in the IRC (`#angularjs` channel at the `freenode` network). Use this [webchat](https://webchat.freenode.net/) or your own IRC client.
+- Ask a question in [StackOverflow](http://stackoverflow.com/) under the [angular-ui-bootstrap](http://stackoverflow.com/questions/tagged/angular-ui-bootstrap) tag.
 
 **Please do not create new issues in this repository to ask questions about using UI Bootstrap**
 
 ## Found a bug?
+
 Please take a look at [CONTRIBUTING.md](CONTRIBUTING.md#you-think-youve-found-a-bug) and submit your issue [here](https://github.com/angular-ui/bootstrap/issues/new).
 
-
-----
-
+---
 
 # Contributing to the project
 
