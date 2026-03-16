@@ -115,6 +115,9 @@ angular.module('ui.bootstrap.tabs', [])
         scope.$parent.$eval(attrs.vertical) : false;
       scope.justified = angular.isDefined(attrs.justified) ?
         scope.$parent.$eval(attrs.justified) : false;
+      attrs.$observe('tabsAriaLabel', function(value) {
+        scope.tabset.ariaLabel = value;
+      });
     }
   };
 })
