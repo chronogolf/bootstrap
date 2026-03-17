@@ -130,6 +130,8 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
           'tooltip-animation-class="fade"' +
           'uib-tooltip-classes ' +
           'ng-class="{ in: isOpen }" ' +
+          'role="tooltip" ' +
+          'id="' + startSym + 'tooltipId' + endSym + '" ' +
           '>' +
         '</div>';
 
@@ -154,6 +156,7 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
             var contentParse = options.useContentExp ? $parse(attrs[ttType]) : false;
             var observers = [];
             var lastPlacement;
+            var tooltipId = 'uib-tooltip-' + ttScope.$id;
 
             var positionTooltip = function() {
               // check if tooltip exists and is not empty
@@ -344,6 +347,7 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
                 close: hide
               });
 
+              element.attr('aria-describedby', tooltipId);
               prepObservers();
             }
 
@@ -361,6 +365,7 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
                 }
               }
 
+              element.removeAttr('aria-describedby');
               openedTooltips.remove(ttScope);
               
               if (tooltipLinkedScope) {
@@ -398,6 +403,8 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
                 isOpenParse.assign(scope, isOpen);
               }
             }
+
+            ttScope.tooltipId = tooltipId;
 
             ttScope.contentExp = function() {
               return ttScope.content;
