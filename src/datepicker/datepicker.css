@@ -10,10 +10,39 @@
   width: 100%
 }
 
-/* Remove default outline from tbody when focused - focus is shown on active button instead */
-.uib-daypicker tbody:focus,
-.uib-monthpicker tbody:focus,
-.uib-yearpicker tbody:focus {
+/* Invisible sentinel at end of tbody - sole purpose is to be a Tab stop after thead buttons,
+   which then redirects focus to the table via ng-focus="focusGrid()" */
+/* .uib-grid-focus-sentinel {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+  display: flex;
+  align-items: center;
+  width: 100%;
+} */
+
+/* Override 100% width rule for left/right buttons inside the header div (not a table cell) */
+.uib-datepicker-header .uib-left,
+.uib-datepicker-header .uib-right {
+  width: auto;
+}
+
+.uib-datepicker-header .uib-title {
+  flex: 1;
+  text-align: center;
+}
+
+/* Remove default outline from grid table - focus ring shown on active button instead */
+.uib-daypicker table:focus,
+.uib-monthpicker table:focus,
+.uib-yearpicker table:focus {
   outline: none;
 }
 
@@ -21,9 +50,9 @@
 .uib-datepicker button.uib-left:focus,
 .uib-datepicker button.uib-right:focus,
 .uib-datepicker button.uib-title:focus,
-.uib-daypicker tbody:focus .btn.active,
-.uib-monthpicker tbody:focus .btn.active,
-.uib-yearpicker tbody:focus .btn.active {
+.uib-daypicker table:focus .btn.active,
+.uib-monthpicker table:focus .btn.active,
+.uib-yearpicker table:focus .btn.active {
   box-shadow: 0 0 0 2px #FFFFFF;
   outline: 3px solid #005FB8;
   outline-offset: 2px;

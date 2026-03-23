@@ -325,16 +325,14 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
   $scope.keys = { 13: 'enter', 32: 'space', 33: 'pageup', 34: 'pagedown', 35: 'end', 36: 'home', 37: 'left', 38: 'up', 39: 'right', 40: 'down' };
 
   var focusElement = function() {
-    // Use $timeout to ensure DOM has been updated after ng-switch view changes.
-    // Fixes: When switching views (e.g., day -> month picker via title button, or
-    // month -> day when selecting a month), focus would be lost because ng-switch
-    // removes/recreates DOM elements. $timeout defers focus until after Angular
-    // has rendered the new view's DOM, allowing us to find and focus the tbody element.
     $timeout(function() {
-      // Focus the tbody element which contains the date/month/year grid
-      var tbody = self.element[0].querySelector('tbody[tabindex]');
-      if (tbody) {
-        tbody.focus();
+      var active = document.activeElement;
+      if (active && self.element[0].contains(active) && active.tagName === 'BUTTON') {
+        return;
+      }
+      var grid = self.element[0].querySelector('table[tabindex]');
+      if (grid) {
+        grid.focus();
       } else {
         self.element[0].focus();
       }
@@ -343,6 +341,13 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
 
   // Listen for focus requests from popup directive
   $scope.$on('uib:datepicker.focus', focusElement);
+
+  $scope.focusGrid = function() {
+    var grid = self.element[0].querySelector('table[tabindex="-1"]');
+    if (grid) {
+      grid.focus();
+    }
+  };
 
   $scope.keydown = function(evt) {
     var key = $scope.keys[evt.which];
@@ -472,7 +477,8 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
     for (var i = 0; i < 42; i ++) {
       days[i] = angular.extend(this.createDateObject(days[i], this.formatDay), {
         secondary: days[i].getMonth() !== month,
-        uid: scope.uniqueId + '-' + i
+        uid: scope.uniqueId + '-' + i,
+        ariaLabel: dateFilter(days[i], 'MMMM d, y')
       });
     }
 
