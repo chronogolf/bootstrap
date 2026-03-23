@@ -16,7 +16,7 @@
       <td ng-repeat="dt in row" class="uib-day text-center" role="gridcell"
         id="{{::dt.uid}}"
         aria-disabled="{{::dt.disabled}}"
-        aria-selected="{{::dt.selected}}"
+        aria-selected="{{dt.selected}}"
         ng-class="::dt.customClass">
         <button type="button" class="btn btn-default btn-sm"
           uib-is-class="
