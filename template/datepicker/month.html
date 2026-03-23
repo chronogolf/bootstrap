@@ -10,6 +10,8 @@
     <tr class="uib-months" ng-repeat="row in rows track by $index" role="row">
       <td ng-repeat="dt in row" class="uib-month text-center" role="gridcell"
         id="{{::dt.uid}}"
+        aria-disabled="{{::dt.disabled}}"
+        aria-selected="{{::dt.selected}}"
         ng-class="::dt.customClass">
         <button type="button" class="btn btn-default"
           uib-is-class="
@@ -18,8 +20,6 @@
             on dt"
           ng-click="select(dt.date)"
           ng-disabled="::dt.disabled"
-          aria-disabled="{{::dt.disabled}}"
-          aria-selected="{{::dt.selected}}"
           tabindex="-1"><span ng-class="::{'text-info': dt.current}">{{::dt.label}}</span></button>
       </td>
     </tr>

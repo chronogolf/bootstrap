@@ -15,6 +15,8 @@
       <td ng-if="showWeeks" class="text-center h6"><em>{{ weekNumbers[$index] }}</em></td>
       <td ng-repeat="dt in row" class="uib-day text-center" role="gridcell"
         id="{{::dt.uid}}"
+        aria-disabled="{{::dt.disabled}}"
+        aria-selected="{{::dt.selected}}"
         ng-class="::dt.customClass">
         <button type="button" class="btn btn-default btn-sm"
           uib-is-class="
@@ -23,8 +25,6 @@
             on dt"
           ng-click="select(dt.date)"
           ng-disabled="::dt.disabled"
-          aria-disabled="{{::dt.disabled}}"
-          aria-selected="{{::dt.selected}}"
           tabindex="-1"
           aria-label="{{::dt.ariaLabel}}"><span ng-class="::{'text-muted': dt.secondary, 'text-info': dt.current}">{{::dt.label}}</span></button>
       </td>
