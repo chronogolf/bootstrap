@@ -1,9 +1,9 @@
-<table role="grid" aria-labelledby="{{::uniqueId}}-title" ng-keydown="keydown($event)" tabindex="-1" aria-activedescendant="{{activeDateId}}">
+<table role="grid" aria-labelledby="{{::uniqueId}}-title" ng-keydown="keydown($event)" tabindex="0" aria-activedescendant="{{activeDateId}}">
   <thead>
     <tr>
-      <td><button type="button" class="btn btn-default btn-sm pull-left uib-left" ng-click="move(-1)" tabindex="0" aria-label="{{::previousMonthLabel}}"><i aria-hidden="true" class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">{{::previousMonthLabel}}</span></button></td>
-      <th colspan="{{::5 + showWeeks}}"><button id="{{::uniqueId}}-title" aria-live="assertive" aria-atomic="true" type="button" class="btn btn-default btn-sm uib-title" ng-click="toggleMode()" ng-disabled="datepickerMode === maxMode" tabindex="0"><strong>{{title}}</strong></button></th>
-      <td><button type="button" class="btn btn-default btn-sm pull-right uib-right" ng-click="move(1)" tabindex="0" aria-label="{{::nextMonthLabel}}"><i aria-hidden="true" class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">{{::nextMonthLabel}}</span></button></td>
+      <td><button type="button" class="btn btn-default btn-sm pull-left uib-left" ng-click="move(-1)" aria-label="{{::previousMonthLabel}}"><i aria-hidden="true" class="glyphicon glyphicon-chevron-left"></i><span class="sr-only">{{::previousMonthLabel}}</span></button></td>
+      <th colspan="{{::5 + showWeeks}}"><button id="{{::uniqueId}}-title" aria-live="assertive" aria-atomic="true" type="button" class="btn btn-default btn-sm uib-title" ng-click="toggleMode()" ng-disabled="datepickerMode === maxMode"><strong>{{title}}</strong></button></th>
+      <td><button type="button" class="btn btn-default btn-sm pull-right uib-right" ng-click="move(1)" aria-label="{{::nextMonthLabel}}"><i aria-hidden="true" class="glyphicon glyphicon-chevron-right"></i><span class="sr-only">{{::nextMonthLabel}}</span></button></td>
     </tr>
     <tr>
       <th ng-if="showWeeks" class="text-center"></th>
@@ -23,14 +23,11 @@
             on dt"
           ng-click="select(dt.date)"
           ng-disabled="::dt.disabled"
+          aria-disabled="{{::dt.disabled}}"
+          aria-selected="{{::dt.selected}}"
           tabindex="-1"
           aria-label="{{::dt.ariaLabel}}"><span ng-class="::{'text-muted': dt.secondary, 'text-info': dt.current}">{{::dt.label}}</span></button>
       </td>
     </tr>
   </tbody>
-  <tfoot>
-    <tr>
-      <td><button class="uib-grid-focus-sentinel" tabindex="0" aria-hidden="true" ng-focus="focusGrid()"></button></td>
-    </tr>
-  </tfoot>
 </table>

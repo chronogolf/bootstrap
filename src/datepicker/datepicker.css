@@ -10,42 +10,6 @@
   width: 100%
 }
 
-/* Invisible sentinel at end of tbody - sole purpose is to be a Tab stop after thead buttons,
-   which then redirects focus to the table via ng-focus="focusGrid()" */
-/* .uib-grid-focus-sentinel {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-  display: flex;
-  align-items: center;
-  width: 100%;
-} */
-
-/* Override 100% width rule for left/right buttons inside the header div (not a table cell) */
-.uib-datepicker-header .uib-left,
-.uib-datepicker-header .uib-right {
-  width: auto;
-}
-
-.uib-datepicker-header .uib-title {
-  flex: 1;
-  text-align: center;
-}
-
-/* Remove default outline from grid table - focus ring shown on active button instead */
-.uib-daypicker table:focus,
-.uib-monthpicker table:focus,
-.uib-yearpicker table:focus {
-  outline: none;
-}
-
 /* Accessible focus styles - double-layered outline (white inner, blue outer) */
 .uib-datepicker button.uib-left:focus,
 .uib-datepicker button.uib-right:focus,
