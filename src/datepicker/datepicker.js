@@ -331,10 +331,9 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
     // removes/recreates DOM elements. $timeout defers focus until after Angular
     // has rendered the new view's DOM, allowing us to find and focus the tbody element.
     $timeout(function() {
-      // Focus the tbody element which contains the date/month/year grid
-      var tbody = self.element[0].querySelector('tbody[tabindex]');
-      if (tbody) {
-        tbody.focus();
+      var grid = self.element[0].querySelector('table[tabindex]');
+      if (grid) {
+        grid.focus();
       } else {
         self.element[0].focus();
       }
@@ -472,7 +471,8 @@ angular.module('ui.bootstrap.datepicker', ['ui.bootstrap.dateparser', 'ui.bootst
     for (var i = 0; i < 42; i ++) {
       days[i] = angular.extend(this.createDateObject(days[i], this.formatDay), {
         secondary: days[i].getMonth() !== month,
-        uid: scope.uniqueId + '-' + i
+        uid: scope.uniqueId + '-' + i,
+        ariaLabel: dateFilter(days[i], 'MMMM d, y')
       });
     }
 

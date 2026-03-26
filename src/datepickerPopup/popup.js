@@ -9,6 +9,7 @@ angular.module('ui.bootstrap.datepickerPopup', ['ui.bootstrap.datepicker', 'ui.b
   closeOnDateSelection: true,
   closeText: 'Done',
   currentText: 'Today',
+  labelText: 'Date picker',
   datepickerPopup: 'yyyy-MM-dd',
   datepickerPopupTemplateUrl: 'uib/template/datepickerPopup/popup.html',
   datepickerTemplateUrl: 'uib/template/datepicker/datepicker.html',
