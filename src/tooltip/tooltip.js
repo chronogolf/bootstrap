@@ -16,7 +16,7 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
     placementClassPrefix: '',
     animation: true,
     popupDelay: 0,
-    popupCloseDelay: 0,
+    popupCloseDelay: 150,
     useContentExp: false
   };
 
@@ -348,6 +348,12 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
               });
 
               element.attr('aria-describedby', tooltipId);
+
+              // WCAG 1.4.13 - make tooltip hoverable so pointer can move onto it
+              tooltip.css('pointer-events', 'auto');
+              tooltip.on('mouseenter', cancelHide);
+              tooltip.on('mouseleave', hideTooltipBind);
+
               prepObservers();
             }
 
