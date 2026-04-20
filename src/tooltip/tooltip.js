@@ -1,11 +1,11 @@
+var KEY_ESCAPE = 27;
+
 /**
  * The following features are still outstanding: animation as a
  * function, placement as a function, inside, support for more triggers than
  * just mouse enter/leave, html tooltips, and selector delegation.
  */
 angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.stackedMap'])
-
-var KEY_ESCAPE = 27;
 
 /**
  * The $tooltip service creates tooltip- and popover-like directives as well as
