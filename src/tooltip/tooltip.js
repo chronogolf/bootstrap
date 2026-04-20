@@ -5,6 +5,8 @@
  */
 angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.stackedMap'])
 
+var KEY_ESCAPE = 27;
+
 /**
  * The $tooltip service creates tooltip- and popover-like directives as well as
  * houses global options for them.
@@ -72,13 +74,22 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
   this.$get = ['$window', '$compile', '$timeout', '$document', '$uibPosition', '$interpolate', '$rootScope', '$parse', '$$stackedMap', function($window, $compile, $timeout, $document, $position, $interpolate, $rootScope, $parse, $$stackedMap) {
     var openedTooltips = $$stackedMap.createNew();
     $document.on('keyup', keypressListener);
+    // WCAG 1.4.13 - use capture phase to fire before modal's bubble-phase keydown handler
+    $document[0].addEventListener('keydown', captureKeydownListener, true);
 
     $rootScope.$on('$destroy', function() {
       $document.off('keyup', keypressListener);
+      $document[0].removeEventListener('keydown', captureKeydownListener, true);
     });
 
+    function captureKeydownListener(e) {
+      if (e.which === KEY_ESCAPE && openedTooltips.top()) {
+        e.preventDefault();
+      }
+    }
+
     function keypressListener(e) {
-      if (e.which === 27) {
+      if (e.which === KEY_ESCAPE) {
         var last = openedTooltips.top();
         if (last) {
           last.value.close();
@@ -517,7 +528,7 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
 
             // KeyboardEvent handler to hide the tooltip on Escape key press
             function hideOnEscapeKey(e) {
-              if (e.which === 27) {
+              if (e.which === KEY_ESCAPE) {
                 hideTooltipBind();
               }
             }
